@@ -1,0 +1,31 @@
+{
+  "name": "@layer92/csv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "compiled/index.js",
+  "types": "compiled/index.d.ts",
+  "files": [
+    "compiled"
+  ],
+  "scripts": {
+    "test": "mocha --bail --timeout 2000 --require ts-node/register --extensions ts --watch 'test.test.ts'"
+  },
+  "prepublish": "tsc",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/layer92/csv-ts.git"
+  },
+  "author": "layer92",
+  "license": "0BSD",
+  "bugs": {
+    "url": "https://github.com/layer92/csv-ts/issues"
+  },
+  "homepage": "https://github.com/layer92/csv-ts#readme",
+  "dependencies": {
+    "@types/mocha": "10.0.3",
+    "@types/node": "20.8.6",
+    "mocha": "10.2.0",
+    "ts-node": "10.9.1",
+    "typescript": "5.2.2"
+  }
+}
