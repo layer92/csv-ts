@@ -17,3 +17,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./MakeCsvFromMatrix"), exports);
 __exportStar(require("./MakeObjectsFromCsv"), exports);
 __exportStar(require("./MakeMatrixFromCsv"), exports);
+__exportStar(require("./CsvParseOptions"), exports);

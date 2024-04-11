@@ -6,9 +6,10 @@ const MakeMatrixFromCsv_1 = require("./MakeMatrixFromCsv");
  * treats the first row as headers
  * CSV according to RFC 4180
  * @param delimiter: an alternative delimiter to comma, cannot be double quote
+ * @returns an array of objects, where the fields are the first row of the csv, and each row after that becomes an object with those values
  * */
-function MakeObjectsFromCsv(csv, delimiter = `,`, maxIterations) {
-    const matrix = (0, MakeMatrixFromCsv_1.MakeMatrixFromCsv)(csv, delimiter, maxIterations);
+function MakeObjectsFromCsv(csv, options) {
+    const matrix = (0, MakeMatrixFromCsv_1.MakeMatrixFromCsv)(csv, options);
     const [headers, ...rest] = matrix;
     const headersLength = headers.length;
     const objects = [];

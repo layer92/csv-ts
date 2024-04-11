@@ -1,8 +1,13 @@
+import { CsvParseOptions } from "./CsvParseOptions";
+
 /**
  * CSV according to RFC 4180
  * @param delimiter: an alternative delimiter to comma, cannot be double quote
  * */
-export function MakeMatrixFromCsv(csv:string,delimiter=`,`,maxIterations?:number){
+export function MakeMatrixFromCsv(csv:string,options?:CsvParseOptions):string[][]{
+    const delimiter = options?.delimiter||`,`;
+    const includeEmptyRows = options?.includeEmptyRows;
+    const maxIterations = options?.maxIterations;
     const csvLength = csv.length;
     if(delimiter.includes(`"`)){
         throw new Error(`Unsupported delimiter: " cannot be used as csv delimiter.`)
@@ -53,7 +58,7 @@ export function MakeMatrixFromCsv(csv:string,delimiter=`,`,maxIterations?:number
         value += csv.slice(valueStart,valueEnd);
         currentRow.push(value);
         if(valueEnd==csvLength){
-            return matrix;
+            break;
         }
         cursor = valueEnd;
         if(valueEnd===delimiterIndex){
@@ -73,6 +78,14 @@ export function MakeMatrixFromCsv(csv:string,delimiter=`,`,maxIterations?:number
         currentRow = [];
         matrix.push(currentRow);
     }
+    // possibly remove the current row now that we've finished it
+    if(!includeEmptyRows){
+        function isEmptyRow(row:string[]){
+            return row.join("").trim().length===0
+        }
+        matrix = matrix.filter(a=>!isEmptyRow(a));
+    }
+    return matrix;
 }
 
 /** Skips any pairs of quotes, so in string `"""" """ "` would return 7 */

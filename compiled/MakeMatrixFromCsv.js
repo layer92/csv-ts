@@ -5,7 +5,10 @@ exports.MakeMatrixFromCsv = void 0;
  * CSV according to RFC 4180
  * @param delimiter: an alternative delimiter to comma, cannot be double quote
  * */
-function MakeMatrixFromCsv(csv, delimiter = `,`, maxIterations) {
+function MakeMatrixFromCsv(csv, options) {
+    const delimiter = options?.delimiter || `,`;
+    const includeEmptyRows = options?.includeEmptyRows;
+    const maxIterations = options?.maxIterations;
     const csvLength = csv.length;
     if (delimiter.includes(`"`)) {
         throw new Error(`Unsupported delimiter: " cannot be used as csv delimiter.`);
@@ -56,7 +59,7 @@ function MakeMatrixFromCsv(csv, delimiter = `,`, maxIterations) {
         value += csv.slice(valueStart, valueEnd);
         currentRow.push(value);
         if (valueEnd == csvLength) {
-            return matrix;
+            break;
         }
         cursor = valueEnd;
         if (valueEnd === delimiterIndex) {
@@ -76,6 +79,14 @@ function MakeMatrixFromCsv(csv, delimiter = `,`, maxIterations) {
         currentRow = [];
         matrix.push(currentRow);
     }
+    // possibly remove the current row now that we've finished it
+    if (!includeEmptyRows) {
+        function isEmptyRow(row) {
+            return row.join("").trim().length === 0;
+        }
+        matrix = matrix.filter(a => !isEmptyRow(a));
+    }
+    return matrix;
 }
 exports.MakeMatrixFromCsv = MakeMatrixFromCsv;
 /** Skips any pairs of quotes, so in string `"""" """ "` would return 7 */
