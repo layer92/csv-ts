@@ -2,7 +2,7 @@
  * CSV according to RFC 4180
  * @param delimiter: an alternative delimiter to comma, cannot be double quote
  * */
-export function MakeCsvFromMatrix(matrix:string[][],delimiter=`,`,lineDelimiter=`\n`):string{
+export function MatrixToCsv(matrix:string[][],delimiter=`,`,lineDelimiter=`\n`):string{
     let csv = ``;
     for(const row of matrix){
         if(csv.length){

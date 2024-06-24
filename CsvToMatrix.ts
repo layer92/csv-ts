@@ -4,7 +4,7 @@ import { CsvParseOptions } from "./CsvParseOptions";
  * CSV according to RFC 4180
  * @param delimiter: an alternative delimiter to comma, cannot be double quote
  * */
-export function MakeMatrixFromCsv(csv:string,options?:CsvParseOptions):string[][]{
+export function CsvToMatrix(csv:string,options?:CsvParseOptions):string[][]{
     const delimiter = options?.delimiter||`,`;
     const includeEmptyRows = options?.includeEmptyRows;
     const maxIterations = options?.maxIterations;
