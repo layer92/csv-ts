@@ -1,4 +1,4 @@
-export * from "./MakeCsvFromMatrix";
-export * from "./MakeObjectsFromCsv";
-export * from "./MakeMatrixFromCsv";
+export * from "./MatrixToCsv";
+export * from "./CsvToObjects";
+export * from "./CsvToMatrix";
 export * from "./CsvParseOptions";

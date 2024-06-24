@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MakeCsvFromMatrix = void 0;
+exports.MatrixToCsv = void 0;
 /**
  * CSV according to RFC 4180
  * @param delimiter: an alternative delimiter to comma, cannot be double quote
  * */
-function MakeCsvFromMatrix(matrix, delimiter = `,`, lineDelimiter = `\n`) {
+function MatrixToCsv(matrix, delimiter = `,`, lineDelimiter = `\n`) {
     let csv = ``;
     for (const row of matrix) {
         if (csv.length) {
@@ -28,4 +28,4 @@ function MakeCsvFromMatrix(matrix, delimiter = `,`, lineDelimiter = `\n`) {
     }
     return csv;
 }
-exports.MakeCsvFromMatrix = MakeCsvFromMatrix;
+exports.MatrixToCsv = MatrixToCsv;

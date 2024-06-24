@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MakeMatrixFromCsv = void 0;
+exports.CsvToMatrix = void 0;
 /**
  * CSV according to RFC 4180
  * @param delimiter: an alternative delimiter to comma, cannot be double quote
  * */
-function MakeMatrixFromCsv(csv, options) {
+function CsvToMatrix(csv, options) {
     const delimiter = options?.delimiter || `,`;
     const includeEmptyRows = options?.includeEmptyRows;
     const maxIterations = options?.maxIterations;
@@ -88,7 +88,7 @@ function MakeMatrixFromCsv(csv, options) {
     }
     return matrix;
 }
-exports.MakeMatrixFromCsv = MakeMatrixFromCsv;
+exports.CsvToMatrix = CsvToMatrix;
 /** Skips any pairs of quotes, so in string `"""" """ "` would return 7 */
 function GetIndexOfSingleQuote(string, position) {
     const stringLength = string.length;
