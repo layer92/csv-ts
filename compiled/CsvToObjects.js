@@ -18,8 +18,12 @@ function CsvToObjects(csv, options) {
         for (let headerIndex = 0; headerIndex < headersLength; ++headerIndex) {
             const header = headers[headerIndex];
             const value = row[headerIndex];
-            if (value !== "" && value !== undefined) {
+            const isEmptyCell = value === "" || value === undefined;
+            if (!isEmptyCell) {
                 object[header] = value;
+            }
+            else if (options.emptyCellValue !== undefined) {
+                object[header] = options.emptyCellValue;
             }
         }
         objects.push(object);
